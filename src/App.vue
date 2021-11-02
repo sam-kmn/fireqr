@@ -30,39 +30,29 @@
   <router-view/>
 </template>
 
-<script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
+<script setup>
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
 import {computed} from 'vue'
 import {useStore} from 'vuex'
 import {useRoute} from 'vue-router'
 
-export default {
-  setup() {
+const store = useStore()
+const route = useRoute()
 
-    const store = useStore()
-    const route = useRoute()
-
-    const currentRoute = computed(() => route.name)
-    const isUser = computed(() => store.getters.getIsUser)
+const currentRoute = computed(() => route.name)
+const isUser = computed(() => store.getters.getIsUser)
 
 
-    firebase.auth().onAuthStateChanged( user => {
-      if (user) {
-        store.commit('setUser', {
-          email: user.email,
-          uid: user.uid
-        })
-      } else store.commit('delUser')
+firebase.auth().onAuthStateChanged( user => {
+  if (user) {
+    store.commit('setUser', {
+      email: user.email,
+      uid: user.uid
     })
-
-
-    return{
-      isUser, currentRoute
-    }
-  },
-}
+  } else store.commit('delUser')
+})
 </script>
 
 <style lang="scss">

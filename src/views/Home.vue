@@ -1,14 +1,6 @@
 <template>
   <div class="home">
 
-      <!-- Dodać kolejny section v-if="isUser"
-        Coś w stylu 
-            "You 'are logged in! 
-            No need to waste time on home page! "
-            btn> Go to Dashboard </btn
-       -->
-    
-
     <!-- generator -->
     <section class="px-2 py-5 p-md-5 m-md-5">
             <div class="row justify-content-evenly align-items-center">
@@ -42,32 +34,6 @@
 
             </div>
     </section>
-
-    <!-- generator -->
-    <!-- <section class="py-5 m-5">
-        <div class="row justify-content-center align-items-center py-lg-3">
-            <div class="col-12 col-md-6 mb-5 m-md-0">
-
-                <div class="row">
-                    <div class="col-12 text-center text-md-start">
-                        <h1>Create your own QR Code!</h1>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center justify-content-md-start">
-                    <div class="col-11 col-sm-8 col-md-12 col-xl-10">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Your content" v-model="userInput">
-                            <button class="btn btn-outline-primary" type="button" @click="generateQR" id="button-addon2">Generate QR</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 text-center">
-                <img :src="qrSrc" alt="QR Code" id="qr-img">
-            </div>
-        </div>
-    </section> -->
 
     <!-- sign up -->
     <section v-if="!isUser" class="py-5 p-sm-5 bg-dark text-light">
@@ -111,10 +77,6 @@
                       </div>
                 </div>
             </div>
-            <!-- <div class="row justify-content-evenly">
-                <div class="col-5 bg-danger">1</div>
-                <div class="col-2 bg-primary">2</div>
-            </div> -->
         </div>
     </section>
 
@@ -123,39 +85,28 @@
   </div>
 </template>
 
-<script>
+<script setup>
 // @ is an alias to /src
 import {useStore} from 'vuex'
 import {computed, ref} from 'vue'
 
-export default {
-  name: 'Home',
-  setup(){
-
-        var qrSrc = ref('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example')
-        const userInput = ref('')
+var qrSrc = ref('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example')
+const userInput = ref('')
         
-        const store = useStore()
-        const isUser = computed(()=>store.getters.getIsUser)
+const store = useStore()
+const isUser = computed(()=>store.getters.getIsUser)
 
 
-        function prepareUrl(strr){
-            let base = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='
-            if(strr.search(' ')===-1) return base.concat(strr)
-            else return base.concat(strr.split(' ').join('+'))
-        }
+function prepareUrl(strr){
+    let base = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='
+    if(strr.search(' ')===-1) return base.concat(strr)
+    else return base.concat(strr.split(' ').join('+'))
+}
 
-        function generateQR(){
-            if(userInput.value) {
-                qrSrc.value = prepareUrl(userInput.value)
-            }
-        }
-
-        return{
-            isUser,
-            qrSrc, userInput, generateQR, 
-        }
-  }
+function generateQR(){
+    if(userInput.value) {
+        qrSrc.value = prepareUrl(userInput.value)
+    }
 }
 </script>
 

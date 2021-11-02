@@ -1,24 +1,14 @@
-# fireqr
+# FireQR
 
-## Project setup
-```
-npm install
-```
+## About
+#### FireQR is free QR code generator
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Screenshots
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Run
+#### Compiles and hot-reloads for development 
 
-### Lints and fixes files
-```
-npm run lint
-```
+- **npm run build**
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<!-- ### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/). -->

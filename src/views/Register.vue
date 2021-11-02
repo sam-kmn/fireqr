@@ -22,44 +22,35 @@
 </template>
 
 
-<script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
+<script setup>
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/database'
 
 import {useRouter} from 'vue-router'
 import {useStore} from 'vuex'
 import {ref, onMounted} from 'vue'
 
-export default {
-    setup() {
-        
-        const store = useStore()
-        const router = useRouter()
-        const email = ref('')
-        const password = ref('')
+const store = useStore()
+const router = useRouter()
+const email = ref('')
+const password = ref('')
 
-        onMounted(()=>{
-            if (store.getters.getIsUser) router.push('/dashboard')
+onMounted(()=>{
+    if (store.getters.getIsUser) router.push('/dashboard')
+})
+
+function signUp(){
+    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+        .then( function(res){
+            firebase.database().ref(`users/${res.user.uid}`).set({
+                'email':res.user.email
+            })
+            router.push('/dashboard')
         })
-
-        function signUp(){
-            firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
-                .then( function(res){
-                    firebase.database().ref(`users/${res.user.uid}`).set({
-                        'email':res.user.email
-                    })
-                    router.push('/dashboard')
-                })
-                .catch(err => alert(err.message))
-        }
-
-        return{
-            email,
-            password,
-            signUp,
-        }
-    },
+        .catch(err => alert(err.message))
 }
+
 </script>
 
 <style lang="scss" scoped>

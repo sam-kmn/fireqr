@@ -21,38 +21,27 @@
 </template>
 
 
-<script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
+<script setup>
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
 import {useRouter} from 'vue-router'
 import {useStore} from 'vuex'
 import {ref, onMounted} from 'vue'
-
-export default {
-    setup() {
         
-        const store = useStore()
-        const router = useRouter()
-        const email = ref('')
-        const password = ref('')
+const store = useStore()
+const router = useRouter()
+const email = ref('')
+const password = ref('')
 
-        onMounted(()=>{
-            if (store.getters.getIsUser) router.push('/dashboard')
-        })
+onMounted(()=>{
+    if (store.getters.getIsUser) router.push('/dashboard')
+})
 
-        function signIn(){
-            firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-                .then(() => router.push('/'))
-                .catch(err => alert(err.message))
-        }
-
-        return{
-            email,
-            password,
-            signIn
-        }
-    },
+function signIn(){
+    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+        .then(() => router.push('/'))
+        .catch(err => alert(err.message))
 }
 </script>
 

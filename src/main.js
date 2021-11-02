@@ -2,19 +2,19 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app';
 
 import 'bootstrap'
 
 var firebaseConfig = {
-    apiKey: "AIzaSyCq-tehltAMRasBtndCtpFRZlZCQ4Ez9KQ",
-    authDomain: "easy-qr-f8c01.firebaseapp.com",
-    projectId: "easy-qr-f8c01",
-    storageBucket: "easy-qr-f8c01.appspot.com",
-    messagingSenderId: "68529783584",
-    databaseURL: "https://easy-qr-f8c01-default-rtdb.europe-west1.firebasedatabase.app/",
-    appId: "1:68529783584:web:1561437b2b66b067e60d45"
-  };
+  apiKey: "AIzaSyAWK4hpge-BWjBxvku4KcHm3HzE92SPUeM",
+  authDomain: "fireqr-generator.firebaseapp.com",
+  databaseURL: "https://fireqr-generator-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "fireqr-generator",
+  storageBucket: "fireqr-generator.appspot.com",
+  messagingSenderId: "40576863127",
+  appId: "1:40576863127:web:7c3865e9c28d46839752d2"
+};
   
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
