@@ -1,14 +1,11 @@
 # FireQR
 
-## About
-#### FireQR is free QR code generator
+One of my first projects. It is a QR code generator, powered by [Firebase](https://firebase.google.com/) and [GoQR API](https://goqr.me/api/), with few interesting features (that are available after registration).
 
-## Screenshots
+#### [Check it out](https://fireqr-generator.web.app/)
 
-## Run
-#### Compiles and hot-reloads for development 
-
-- **npm run build**
-
-<!-- ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/). -->
+- vue 3
+- vuex
+- vue-router
+- bootstrap
+- firebase
